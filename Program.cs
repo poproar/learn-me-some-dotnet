@@ -1,4 +1,6 @@
-﻿using System;
+﻿using static System.Linq.Enumerable;
+using System;
+using System.Collections.Generic;
 
 namespace Hello
 {
@@ -18,10 +20,24 @@ namespace Hello
             }
 
             var generator = new FibonacciGenerator();
-            foreach (var digit in generator.Generate(15))
+            var dice = new RandomDieGenerator();
+            foreach (var digit in generator.Generate(6))
             {
-                Console.WriteLine(digit);
+                // Console.WriteLine(digit);
             }
+
+            var results = new Dictionary<int, int>();
+            foreach (var index in Range(1, 6))
+            {
+                results.Add(index, 0);
+            };
+
+            foreach (var index in Range(0, 1000))
+            {
+                int rolled = dice.Roll();
+                results[rolled]++;
+            }
+            results.Select(i => $"{i.Key}: {i.Value}").ToList().ForEach(Console.WriteLine);
         }
     }
 }
