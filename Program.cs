@@ -1,12 +1,24 @@
-﻿using static System.Linq.Enumerable;
-using System;
+﻿using System;
 using System.Collections.Generic;
+using System.Threading.Tasks;
+using System.Text;
+using Microsoft.AspNetCore.Blazor.Hosting;
+using Microsoft.Extensions.DependencyInjection;
+using static System.Linq.Enumerable;
 
-namespace Hello
+namespace learn_me_some_dotnet
 {
-    class Program
+    public class Program
     {
-        static void Main(string[] args)
+        public static async Task Main(string[] args)
+        {
+            var builder = WebAssemblyHostBuilder.CreateDefault(args);
+            builder.RootComponents.Add<App>("app");
+
+            await builder.Build().RunAsync();
+        }
+
+        static void Old(string[] args)
         {
             if (args.Length > 0)
             {
@@ -40,4 +52,3 @@ namespace Hello
             results.Select(i => $"{i.Key}: {i.Value}").ToList().ForEach(Console.WriteLine);
         }
     }
-}
