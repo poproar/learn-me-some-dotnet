@@ -12,31 +12,16 @@ namespace Hello
             }
             else
             {
-                Console.WriteLine("Hello!");
+                Console.WriteLine("Console WriteLine will not run in new class");
+                Console.WriteLine("and template used dir name as namespace, REMEMBER");
+
             }
 
-            Console.WriteLine("Fibonacci Numbers 1-15:");
-
-            for (int i = 0; i < 15; i++)
+            var generator = new FibonacciGenerator();
+            foreach (var digit in generator.Generate(15))
             {
-                Console.WriteLine($"{i + 1}: {FibonacciNumber(i)}");
+                Console.WriteLine(digit);
             }
-        }
-
-        static int FibonacciNumber(int n)
-        {
-            int a = 0;
-            int b = 1;
-            int tmp;
-
-            for (int i = 0; i < n; i++)
-            {
-                tmp = a;
-                a = b;
-                b += tmp;
-            }
-
-            return a;
         }
     }
 }
