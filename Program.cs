@@ -39,18 +39,21 @@ namespace learn_me_some_dotnet
                 // Console.WriteLine(digit);
             }
 
-            var results = new Dictionary<int, int>();
-            foreach (var index in Range(1, 6))
+            if (args.Contains("runTest"))
             {
-                results.Add(index, 0);
-            };
+                var results = new Dictionary<int, int>();
+                foreach (var index in Range(1, 6))
+                {
+                    results.Add(index, 0);
+                };
 
-            foreach (var index in Range(0, 1000))
-            {
-                int rolled = dice.Roll();
-                results[rolled]++;
+                foreach (var index in Range(0, 1000))
+                {
+                    int rolled = dice.Roll();
+                    results[rolled]++;
+                }
+                results.Select(i => $"{i.Key}: {i.Value}").ToList().ForEach(Console.WriteLine);
             }
-            results.Select(i => $"{i.Key}: {i.Value}").ToList().ForEach(Console.WriteLine);
         }
     }
 }
