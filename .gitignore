@@ -1,0 +1,8 @@
+bin
+obj
+.config
+.vscode
+.DS_Store
+*.db
+history
+node_modules
