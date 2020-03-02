@@ -1,6 +1,6 @@
 using System.Collections.Generic;
 
-namespace Hello
+namespace Generators
 {
     public class FibonacciGenerator
     {

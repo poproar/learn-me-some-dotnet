@@ -1,7 +1,7 @@
 using System;
 using System.Text;
 
-namespace Hello
+namespace Generators
 {
     public class RandomDieGenerator
     {
