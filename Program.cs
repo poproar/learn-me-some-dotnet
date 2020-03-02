@@ -5,6 +5,7 @@ using System.Text;
 using Microsoft.AspNetCore.Blazor.Hosting;
 using Microsoft.Extensions.DependencyInjection;
 using static System.Linq.Enumerable;
+using Generators;
 
 namespace learn_me_some_dotnet
 {
@@ -52,3 +53,4 @@ namespace learn_me_some_dotnet
             results.Select(i => $"{i.Key}: {i.Value}").ToList().ForEach(Console.WriteLine);
         }
     }
+}
