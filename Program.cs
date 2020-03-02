@@ -1,16 +1,42 @@
 ﻿using System;
 
-namespace learn_me_some_dotnet
+namespace Hello
 {
     class Program
     {
         static void Main(string[] args)
         {
-            Console.WriteLine("what a terrible namespace, but let's get started:");
-            Console.WriteLine("\n after running a dotnet build I found the file in ./bin/Debug/netcoreapp3.1/namespace\n");
-            Console.WriteLine(".... and it ran. Yes!");
+            if (args.Length > 0)
+            {
+                Console.WriteLine($"{args[0]} learn about 'fwd-i-search'!");
+            }
+            else
+            {
+                Console.WriteLine("Hello!");
+            }
 
+            Console.WriteLine("Fibonacci Numbers 1-15:");
 
+            for (int i = 0; i < 15; i++)
+            {
+                Console.WriteLine($"{i + 1}: {FibonacciNumber(i)}");
+            }
+        }
+
+        static int FibonacciNumber(int n)
+        {
+            int a = 0;
+            int b = 1;
+            int tmp;
+
+            for (int i = 0; i < n; i++)
+            {
+                tmp = a;
+                a = b;
+                b += tmp;
+            }
+
+            return a;
         }
     }
 }
