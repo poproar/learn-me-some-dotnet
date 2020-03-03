@@ -6,6 +6,7 @@ using Microsoft.AspNetCore.Blazor.Hosting;
 using Microsoft.Extensions.DependencyInjection;
 using static System.Linq.Enumerable;
 using Generators;
+using Blazored.Toast;
 
 namespace learn_me_some_dotnet
 {
@@ -15,6 +16,8 @@ namespace learn_me_some_dotnet
         {
             var builder = WebAssemblyHostBuilder.CreateDefault(args);
             builder.RootComponents.Add<App>("app");
+
+            builder.Services.AddBlazoredToast();
 
             await builder.Build().RunAsync();
         }
