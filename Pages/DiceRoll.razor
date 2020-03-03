@@ -6,7 +6,7 @@
 
 <button class="btn btn-primary" @onclick="Roll">Roll</button>
 <br>
-<section class="mt-15">
+<section class="mt-3">
 <table class="table table-sm table-bordered">
     <thead>
         <tr>
@@ -34,6 +34,7 @@
 @code {
 
     private int _currentRoll = 0;
+    private int _rollCount = 0;
     private Dictionary<int, int> _results = new Dictionary<int, int>
         {
             {1,0},{2,0},{3,0},{4,0},{5,0},{6,0}
@@ -48,10 +49,15 @@
             _style[i] = "";
         }
         _currentRoll = _dice.Roll();
+        _rollCount++;
         _results[_currentRoll]++;
+
         var max = _results.Aggregate((x, y) => x.Value > y.Value ? x : y).Key;
         _style[max-1]= "table-success";
-        var min = _results.Aggregate((x, y) => x.Value < y.Value ? x : y).Key;
-        _style[min-1]= "table-danger";
+        if (_rollCount > 6)
+        {
+            var min = _results.Aggregate((x, y) => x.Value < y.Value ? x : y).Key;
+            _style[min-1]= "table-danger";
+        }
     }
 }
