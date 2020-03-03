@@ -1,0 +1,57 @@
+@page "/diceroll"
+
+<h1>Dice Roll</h1>
+
+<p>Result: @_currentRoll</p>
+
+<button class="btn btn-primary" @onclick="Roll">Roll</button>
+<br>
+<section class="mt-15">
+<table class="table table-sm table-bordered">
+    <thead>
+        <tr>
+            <th class="text-center">1</th>
+            <th class="text-center">2</th>
+            <th class="text-center">3</th>
+            <th class="text-center">4</th>
+            <th class="text-center">5</th>
+            <th class="text-center">6</th>
+        </tr>
+    </thead>
+    <tbody>
+            <tr>
+                <td class="text-center @_style[0]">@_results[1]</td>
+                <td class="text-center @_style[1]">@_results[2]</td>
+                <td class="text-center @_style[2]">@_results[3]</td>
+                <td class="text-center @_style[3]">@_results[4]</td>
+                <td class="text-center @_style[4]">@_results[5]</td>
+                <td class="text-center @_style[5]">@_results[6]</td>
+            </tr>
+    </tbody>
+</table>
+</section>
+
+@code {
+
+    private int _currentRoll = 0;
+    private Dictionary<int, int> _results = new Dictionary<int, int>
+        {
+            {1,0},{2,0},{3,0},{4,0},{5,0},{6,0}
+        };
+    private string[] _style = new string[6];
+    private Generators.RandomDieGenerator _dice = new Generators.RandomDieGenerator();
+
+    private void Roll()
+    {
+        for (int i = 0; i < _style.Length; i++) 
+        {
+            _style[i] = "";
+        }
+        _currentRoll = _dice.Roll();
+        _results[_currentRoll]++;
+        var max = _results.Aggregate((x, y) => x.Value > y.Value ? x : y).Key;
+        _style[max-1]= "table-success";
+        var min = _results.Aggregate((x, y) => x.Value < y.Value ? x : y).Key;
+        _style[min-1]= "table-danger";
+    }
+}
